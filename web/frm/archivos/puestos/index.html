@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Carga de Puestos</title>
+        <link rel="icon" type="image/png" href="../../../img/favicon.ico"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <!--background="../../../img/a1.jpg" es para poner una imagen de fondo-->
+    <body background="../../../img/sanicar_guaymy.jpg">
+        <div id="confirmar"></div>
+        <div id="buscar"></div>
+        <div id="panelPrograma"> <!-- esto seria para el diseño-->
+            <div id="panelDiseño" class="panel panel-primary"> <!-- esto seria para el diseño-->
+                <div class="panel-heading centrado">Acceso a Puestos</div>
+                <div class="panel-body">
+                    <form id="formPrograma">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>ID Puesto</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="id_puesto" name="id_puesto" type="text"
+                                       class="form-control input-sm" placeholder="Id" onKeyPress="return soloNumeros(event)">
+                            </div>
+                            <div class="col-md-1">
+                                <button id="botonBuscarIdPuesto" type="button" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <div class="col-md-9">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>Numero Puesto</span>
+                            </div>
+                            <div class="col-md-9">
+                                <input id="nombre_puesto" name="nombre_puesto" type="text" class="form-control 
+                                       input-sm" placeholder="Nombre Puesto">                         
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>ID Establecimiento</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="id_establecimiento" name="id_establecimiento" type="text"
+                                       class="form-control input-sm" placeholder="Id Establecimiento" onKeyPress="return soloNumeros(event)">
+                            </div>
+                            <div class="col-md-1">
+                                <button id="botonBuscarIdEstablecimiento" type="button" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <div class="col-md-8">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>Nombre Establecimiento</span>
+                            </div>
+                            <div class="col-md-9">
+                                <input id="nombre_establecimiento" name="nombre_establecimiento" type="text" class="form-control 
+                                       input-sm" placeholder="Nombre Establecimiento" readonly="readonly">                         
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer centrado">
+
+                    <button id="botonAgregar" type="button" class="btn btn-primary btn-sm">Agregar</button>
+                    <button id="botonModificar" type="button" class="btn btn-primary btn-sm">Modificar</button>
+                    <button id="botonEliminar" type="button" class="btn btn-primary btn-sm"
+                            data-toggle="modal" data-target="#confirmarEliminar">Eliminar</button>
+                    <button id="botonSalir" type="button" class="btn btn-primary btn-sm ">Salir</button>
+                </div>
+            </div>
+            <br>
+    <br>
+    <br>
+        </div>
+
+        <div id="mensajes" class="well well-sm centrado">Mensajes del Sistema.</div>
+        <div class="modal fade" id="confirmarEliminar" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header centrado">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="muModalLabel">Mensaje del Sistema</h4>
+                    </div><div class="modal-body">
+                        Está seguro de eliminar estos datos
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlert" type="button" class="btn btn-primary btn-sm">
+                            Eliminar
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../../js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../js/funcion.js" type="text/javascript"></script>
+        <script src="js/funciones.js" type="text/javascript"></script>
+        <script>
+                                           //verificarSesion(true);
+                                           $("#buscar").css("display", "none");
+                                           $("#id_puesto").focus();
+                                           //siguienteCampo("#id_puesto", "#nombre_puesto", false);
+                                           //siguientecampo("#nombre_puesto", "#botonBuscarPuesto", false);
+                                           $("#botonAgregar").on('click', function () {
+                                               //if (validarFormulario()) {
+                                               agregarPuesto();
+                                               // }
+                                           });
+                                           $("#id_puesto").focusout(function (event) {
+                                               if ($("#id_puesto").val === "") {
+                                                   $("#id_puesto").val("0");
+                                               }
+                                               buscarIdPuesto();
+                                           });
+                                           $("#botonBuscarIdPuesto").on('click', function () {
+                                               $("#buscar").load("buscar.html");
+                                               $("#buscar").fadeIn("slow");
+                                               $("#panelPrograma").fadeOut("slow");
+                                           });
+                                           $("#id_establecimiento").focusout(function (event) {
+                                               if ($("#id_establecimiento").val === "") {
+                                                   $("#id_establecimiento").val("0");
+                                               }
+                                               buscarIdEstablecimiento();
+                                           });
+                                           $("#botonBuscarIdEstablecimiento").on('click', function () {
+                                               $("#buscar").load("buscarEstablecimiento.html");
+                                               $("#buscar").fadeIn("slow");
+                                               $("#panelPrograma").fadeOut("slow");
+                                           });
+                                           $("#botonModificar").on('click', function () {
+                                               //if (validarFormulario()) {
+                                               modificarPuesto();
+                                               //}
+                                           });
+                                           $("#botonEliminarAlert").on('click', function () {
+                                               eliminarPuesto();
+                                               $("#confirmarEliminar").modal('hide');
+                                           });
+                                           $("#botonSalir").on('click', function () {
+                                               location.href = "../../../menu.html";
+                                           });
+        </script>
+    </body>
+</html>
+
+
+

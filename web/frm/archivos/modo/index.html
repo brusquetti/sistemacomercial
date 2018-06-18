@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>ModosPagos</title>
+        <link rel="icon" type="image/png" href="../../../mario.png"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+ <body background="../../../img/sanicar_guaymy.jpg" >
+        <div id="confirmar"></div>
+        <div id="buscar"></div>
+        <div id="panelPrograma" >
+        <div id="panelDiseño" class="panel panel-primary">
+              <div class="panel-heading centrado">Tipo de Pagos </div>
+            <div class="panel-body">
+                <form id="formPrograma">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Id</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="id_modopago" name="id_modopago" type="text"
+                                   class="form-control input-sm" placeholder="Id">
+                        </div>
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdModoPago" type="button" class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-md-1">
+                              <span>Nombre</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="nombre_modopago" name="nombre_modopago" type="text" class="form-control
+                                   input-sm" placeholder="Nombre" onkeypress=" return soloLetras(event)">
+                        </div> 
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer centrado">
+                  <button  id="botonAgregar" type="button" class="btn btn-primary">Agregar</button>
+                <button id="botonModificar" type="button" class="btn btn-primary">Modificar</button>
+                <button id="botonEliminar" type="button" class="btn btn-primary"
+                        data-toggle="modal" data-target="#confirmarEliminar">Eliminar</button>
+                <button id="botonSalir" type="button" class="btn btn-primary">Salir</button>
+            </div>
+        </div>
+            </div>
+        <div id="mensajes" class="well well-sm centrado">Mensajes del Sistema.</div>
+        <div class="modal fade" id="confirmarEliminar" tabindex="-1" role="dialog" 
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header centrado">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Mensaje del Sistema</h4>
+                        
+                    </div>
+                    <div class="modal-body">
+                        Está seguro de eliminar estos datos
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlert" type="button" class="btn btn-primary btn-sm">
+                            Eliminar
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                            Cancelar
+                        </button>
+                    </div>
+            </div>
+        </div>
+        </div>
+        <script src="../../../js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../js/funciones.js" type="text/javascript"></script>
+        <script src="js/funciones.js" type="text/javascript"></script>
+        <script>
+            //verificarSesion(true);
+            $("#buscar").css("display","none");
+            $("#id_modopago").focus();
+            siguienteCampo("#id_modopago","#nombre_modopago",false);
+            siguienteCampo("#nombre_modopago","#botonBuscarModoPago",false);
+            $("#id_modopago").focusout(function (event){
+                if($("#id_modopago").val===""){
+                    $("#id_modopago").val("0");
+                }
+                buscarIdModoPago();
+            });
+            $("#botonBuscarIdModoPago").on('click',function(){
+                $("#buscar").load("buscar.html");
+                $("#buscar").fadeIn("slow");
+                $("#panelPrograma").fadeOut("slow");
+            });
+            $("#botonBuscarIdModoPago").on('click',function(){
+                $("#buscar").load("buscarModosPagos.html");
+                $("#buscar").fadeIn("slow");
+                $("#panelPrograma").fadeOut("slow");
+            });
+            $("#botonAgregar").on('click',function(){
+               // if(validarFormulario()){
+                    agregarModoPago();
+               // }
+            });
+            $("#botonModificar").on('click',function(){
+                //if(validarFormulario()){
+                    modificarModoPago();
+                //}
+            });
+            $("#botonEliminarAlert").on('click',function(){
+                eliminarModoPago();
+                $("confirmarEliminar").modal('hide');
+            });
+            $("#botonSalir").on('click',function(){
+                location.href="../../../menu.html";
+            });
+        </script>
+    </body>
+</html>

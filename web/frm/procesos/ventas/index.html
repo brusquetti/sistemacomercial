@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sistema Comercial Union | Ventas</title>
+        <link rel="icon" type="image/png" href="../../../img/favicon.ico"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body background="../../../img/sanicar_guaymy.jpg" style="width: 100%">
+        <div id="confirmar"></div>
+        <div id="buscar"></div>
+        <div id="panelLinea" class="panel panel-primary">
+            <div class="panel-heading centrado">Ventas | Detalle</div>
+            <div class="panel-body">
+                <form id="formLinea">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Id Linea</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="id_detalleventa" name="id_detalleventa" type="text" class="form-control input-sm" placeholder="Id" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Productos</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="id_producto" name="id_producto" type="text" class="form-control input-sm" placeholder="Id" onKeyPress="return soloNumeros(event)" readonly="readonly" >
+                        </div>
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdProducto" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        <div class="col-md-1">
+                            <span>Nombre Productos</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="nombre_producto" name="nombre_producto" type="text" class="form-control input-sm" placeholder="Nombre Producto" readonly="readonly">
+                        </div>
+                        <div class="col-md-1">
+                            <span>Precio</span>
+                        </div>
+                        <div class="col-md-2">
+                            <input id="costo_venta" name="costo_venta" type="text" class="form-control input-sm" placeholder="Precio " readonly="readonly">
+                        </div>
+                        <div class="col-md-1">
+                            <span>IVA</span>
+                        </div>                        
+                        <div class="col-md-1">
+                            <input id="iva_producto" name="iva_producto" type="text" class="form-control input-sm" placeholder="IVA" readonly="readonly" >
+                        </div>
+                         
+                        <div class="col-md-1">
+                            <input id="stock_producto" name="stock_producto" type="text" class="form-control input-sm" placeholder="stock" readonly="readonly" style="visibility: hidden" >
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Cantidad</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="cantidad_productoventa" name="cantidad_productoventa" type="text" class="form-control input-sm derecha" placeholder="Cantidad" onKeyPress="return soloNumeros(event)">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer centrado">
+                <button id="botonAgregarLinea" type="button" class="btn btn-primary btn-sm">Agregar</button>
+                <!--  <button id="botonModificarLinea" type="button" class="btn btn-primary btn-sm">Modificar</button> -->
+                <button id="botonEliminarLinea" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmarEliminarLinea">Eliminar</button>
+                <button id="botonSalirLinea" type="button" class="btn btn-primary btn-sm">  Salir  </button>
+            </div>
+        </div>
+
+
+
+        <!--- PANELDISEÑO--->
+        <div id="panelPrograma"> 
+            <div id="panelDiseño" class="panel panel-primary">
+                <div class="panel-heading centrado" style="font-size: 15px">Ventas | <span id="snombre_empresa"></span> | <span id="susuario_usuario"></span></div>
+                <div class="panel-body">
+                    <form id="formPrograma">
+                        <div style="text-align: center;font-size: 25px; "> <b>FACTURA</b> </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <span>VENTA</span>
+                            </div>
+                            <div class="col-md-1">
+                                <input id="id_venta" name="id_venta" type="text" class="form-control input-sm " placeholder="Id" onKeyPress="return soloNumeros(event)">
+                            </div>
+                            <div class="col-md-6">
+                                <input id="id_timbrado" name="id_timbrado" type="text" class="form-control input-sm" placeholder="N° Timbrado" value="001" readonly="readonly" style="visibility: hidden" >
+
+                            </div>
+                            <div class="col-md-1">
+                                <span>FECHA</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="fecha_venta" name="fecha_venta" type="date" class="form-control 
+                                       input-sm" readonly="readonly" >                         
+                            </div>
+                        </div>
+                        <div class="row" style="margin-left: 1%">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-2">
+                                <span>N° FACTURA</span>
+                            </div>
+                            <div class="col-md-1">
+                                <input  id="id_establecimiento" name="id_establecimiento" type="text" class="form-control input-sm" placeholder="N° Fac" value="001" readonly="readonly" >
+                            </div>
+                            <div class="col-md-1"> 
+                                <input id="id_puesto" name="id_puesto" type="text" class="form-control input-sm" placeholder="N° Fac" value="001" readonly="readonly">
+                            </div> 
+                            <div class="col-md-2">
+                                <input id="numero_factura_venta" name="numero_factura_venta" type="text" class="form-control input-sm" placeholder="N° Fac" onKeyPress="return soloNumeros(event)" >
+                            </div>
+
+                            <div class="col-md-1">
+                                <button id="botonBuscarIdVenta" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>CODIGO</span>
+                            </div>
+                            <div class="col-md-1">
+                                <input id="id_usuario" name="id_usuario" type="text" class="form-control input-sm " placeholder="Id Usuario" readonly="readonly" >
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-2">
+                                <span>VENDEDOR/A</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="nombre_usuario" name="nombre_usuario" type="text" class="form-control 
+                                       input-sm" readonly="readonly" >                         
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>CLIENTE</span>
+                            </div>
+                            <div class="col-md-1">
+                                <input id="id_cliente" name="id_cliente" type="text" class="form-control input-sm" placeholder="Id" onKeyPress="return soloNumeros(event)">
+                            </div>
+                            <div class="col-md-1">
+                                <button id="botonBuscarIdCliente" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <div class="col-md-1">
+                                <span>NOMBRE</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="nombre_cliente" name="nombre_cliente" type="text" class="form-control input-sm" placeholder="Nombre Cliente" disabled="disabled">
+                            </div>
+                            <div class="col-md-1">
+                                <span>RUC</span>
+                            </div>
+                            <div class="col-md-2">
+                                <input id="ruc_cliente" name="ruc_cliente" type="text" class="form-control input-sm" placeholder="Ruc Cliente" disabled="disabled">
+                            </div>
+                            <div class="col-md-1">
+                                <button id="botonplus" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <span>ESTADO</span>
+                            </div>
+                            <div class="col-md-2">
+                                <input id="estado_venta" name="estado_venta" type="text" class="form-control 
+                                       input-sm" readonly="readonly" >                         
+                            </div>
+                        </div>
+                        <!--   <div class="row">
+                               <div class="col-md-1">
+                                   <input id="id_tipopago" name="id_tipopago" type="text" class="form-control input-sm" placeholder="Id" value="0">
+                               </div>
+                               <div class="col-md-1">
+                                   <button id="botonBuscarIdTipoPago" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                               </div>
+                               <div class="col-md-2">
+                                   <input id="nombre_tipopago" name="nombre_tipopago" type="text" class="form-control input-sm" placeholder="Tipo" readonly="readonly" value="xxxxxxxxx">
+                               </div>
+                           </div> -->
+
+                        <div style="text-align: center;font-size: 25px; "> <b>DETALLE FACTURA</b> </div>
+
+                    </form>
+                    <!--<center><h3>Ventas Detalles</h3></center>-->
+                    <div id="detalle" hidden="">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Cantidad</th>
+                                    <th>Descripcion</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Exentas</th>
+                                    <th>Gravadas 5%</th>
+                                    <th>Gravadas 10%</th>
+                                    <th class="centrado"><button id="agregar" onclick="agregarLinea()" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></button></th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenidoDetalle">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-footer centrado">
+                    <button id="botonAgregar" type="button" class="btn btn-primary btn-sm">Agregar</button>
+                    <button id="botonImprimir" type="button" class="btn btn-primary btn-sm">Imprimir</button>
+                    <button id="botonEliminar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmarEliminar">Anular</button>
+                    <button id="botonSalir" type="button" class="btn btn-primary btn-sm">  Salir  </button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="mensajes" class="well well-sm centrado">Mensajes del Sistema.</div>
+        <div class="modal fade" id="confirmarEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header  centrado">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Mensaje del Sistema</h4>
+                    </div>
+                    <div class="modal-body">
+                        Está seguro de anular esta factura?
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlert" type="button" class="btn btn-primary btn-sm">Confirmar</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="confirmarEliminarLinea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header  centrado">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabelLinea">Mensaje del Sistema</h4>
+                    </div>
+                    <div class="modal-body">
+                        Está seguro de eliminar esta linea?
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlertLinea" type="button" class="btn btn-primary btn-sm">Eliminar</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../../js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../js/funciones.js" type="text/javascript"></script>
+        <script src="js/funciones.js" type="text/javascript"></script>
+        <script>
+                                        verificarSesion(true);
+                                        $("#buscar").css("display", "none");
+                                        $("#panelLinea").css("display", "none");
+                                        $("#id_venta").focus();
+                                        buscarIdVenta();
+                                        //siguienteCampo("#id_venta", "#id_cliente", false);
+
+                                        //siguienteCampo("#id_producto", "#cantidad_productoventa", false);
+
+                                        if ($("#id_venta").val() === "0") {
+                                            // siguienteCampo("#id_cliente", "#botonAgregar", false);
+                                        } else {
+
+                                            // siguienteCampo("#id_cliente", "#botonModificar", false);
+                                        }
+
+                                        $("#id_venta").focusout(function (event) {
+                                            if ($("#id_venta").val() === "") {
+                                                $("#id_venta").val("0");
+                                            }
+                                            buscarIdVenta();
+                                            var id = $("#id_venta").val();
+                                            $("#id_venta").val("0");
+                                            var img = "<img src='../../../img/pedidos/" + id + ".jpg' alt=''>";
+                                            $("#foto").html(img);
+
+                                        });
+                                        $("#id_cliente").focusout(function (event) {
+                                            if ($("#id_cliente").val() === "") {
+                                                $("#id_cliente").val("0");
+                                            }
+                                            buscarIdCliente();
+                                        });
+                                        $("#id_producto").focusout(function (event) {
+                                            if ($("#id_producto").val() === "") {
+                                                $("#id_producto").val("0");
+                                                $("#stock_producto").val("0");
+                                            }
+                                            buscarIdProducto();
+                                        });
+                                        $("#id_tipopago").focusout(function (event) {
+                                            if ($("#id_tipopago").val() === "") {
+                                                $("#id_tipopago").val("0");
+                                            }
+                                            buscarIdTipoPago();
+                                        });
+                                        $("#botonBuscarIdVenta").on('click', function () {
+                                            $("#buscar").load("buscar.html");
+                                            $("#buscar").fadeIn("slow");
+                                            $("#panelPrograma").fadeOut("slow");
+                                        });
+                                        $("#botonBuscarIdCliente").on('click', function () {
+                                            $("#buscar").load("buscarCliente.html");
+                                            $("#buscar").fadeIn("slow");
+                                            $("#panelPrograma").fadeOut("slow");
+                                        });
+                                        $("#botonBuscarIdProducto").on('click', function () {
+                                            $("#buscar").load("buscarProducto.html");
+                                            $("#buscar").fadeIn("slow");
+                                            $("#panelLinea").fadeOut("slow");
+                                        });
+                                        $("#botonBuscarIdTipoPago").on('click', function () {
+                                            $("#buscar").load("buscarPagos.html");
+                                            $("#buscar").fadeIn("slow");
+                                            $("#panelPrograma").fadeOut("slow");
+                                        });
+                                        $("#botonAgregar").on('click', function () {
+                                            if (validarFormularioVenta()) {
+                                                agregarVenta();
+                                            }
+                                        });
+                                        $("#botonModificar").on('click', function () {
+
+                                            modificarVenta();
+
+                                        });
+                                        $("#botonEliminarAlert").on('click', function () {
+                                            eliminarVenta();
+                                            $('#confirmarEliminar').modal('hide');
+                                        });
+                                        $("#botonSalir").on('click', function () {
+                                            location.href = "../../../menu.html";
+                                        });
+
+                                        $("#botonAgregarLinea").on('click', function () {
+                                            if (validarFormularioVenta()) {
+                                                agregarVentaDetalle();
+                                            }
+                                        });
+                                        $("#botonModificarLinea").on('click', function () {
+
+                                            modificarVentaDetalle();
+
+
+                                        });
+                                        $("#botonEliminarAlertLinea").on('click', function () {
+                                            eliminarVentaDetalle();
+                                            $('#confirmarEliminarLinea').modal('hide');
+                                        });
+
+                                        $("#botonSalirLinea").on('click', function () {
+                                            $("#panelLinea").fadeOut("slow");
+                                            $("#panelPrograma").fadeIn("slow");
+                                        });
+                                        //verificarSesion(true);
+                                        $("#desde_id").focus();
+                                        //siguienteCampo("#desde_id", "#hasta_id", false);
+                                        $("#botonImprimir").on('click', function () {
+
+                                            var d = $("#id_venta").val();
+
+                                            var jsp = "jsp/tablas.jsp";
+                                            window.open(jsp + "?d=" + d);
+                                        });
+                                        $("#botonSalir").on('click', function () {
+                                            location.href = "../../../menu.html";
+                                        });
+                                        $("#botonplus").on('click', function () {
+                                            location.href = "../../archivos/clientes/index.html"
+                                        });
+
+        </script>
+    </body>
+</html>

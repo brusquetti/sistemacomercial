@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Carga de Timbrados</title>
+        <link rel="icon" type="image/png" href="../../../img/favicon.ico"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body background="../../../img/sanicar_guaymy.jpg" style="width: 100%">
+        <div id="confirmar"></div>
+        <div id="buscar"></div>
+        <div id="panelPrograma" >
+        <div id="panelDiseño" class="panel panel-primary">
+            <div class="panel-heading centrado">Acceso a Timbrados</div>
+            <div class="panel-body" >
+                <form id="formPrograma">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>ID Establecimiento</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="id_establecimiento" name="id_establecimiento" type="text"
+                                   class="form-control input-sm" placeholder="Id"/>
+                        </div>
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdEstablecimiento" type="button" class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>Nombre Establecimiento</span>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="nombre_establecimiento" name="nombre_establecimiento" type="text" class="form-control
+                                   input-sm" placeholder="Establecimiento" onkeypress=" return soloLetras(event)">
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>ID Puesto</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="id_puesto" name="id_puesto" type="text"
+                                   class="form-control input-sm" placeholder="Id"/>
+                        </div>
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdPuesto" type="button" class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>Nombre Puesto</span>
+                        </div>
+                        <div class="col-md-5">
+                            <input id="nombre_puesto" name="nombre_puesto" type="text" class="form-control
+                                   input-sm" placeholder="Puesto" onkeypress=" return soloLetras(event)">
+                        </div> 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>ID Timbrado</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="id_timbrado" name="id_timbrado" type="text"
+                                   class="form-control input-sm" placeholder="Id" onKeyPress="return soloNumeros(event)" />
+                        </div>
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdTimbrado" type="button" class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        <div class="col-md-9">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>Numero Timbrado</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="numero_timbrado" name="numero_timbrado" type="text" class="form-control
+                                   input-sm" placeholder="Numero" >
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>Fecha Inicio</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="fecha_inicio" name="fecha_inicio" type="date" class="form-control 
+                                   input-sm" >                         
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>Fecha Vencimiento</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="fecha_vencimiento" name="fecha_vencimiento" type="date" class="form-control 
+                                   input-sm" >                         
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>Fecha Actual</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="fecha_actual" name="fecha_actual" type="date" class="form-control 
+                                   input-sm" >                         
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span> desde</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="desde" name="desde" type="text" class="form-control
+                                   input-sm" placeholder="desde" >
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>hasta </span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="hasta" name="hasta" type="text" class="form-control
+                                   input-sm" placeholder="hasta" >
+                        </div> 
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer centrado">
+
+                <button id="botonAgregar" type="button" class="btn btn-primary btn-sm">Agregar</button>
+                <button id="botonModificar" type="button" class="btn btn-primary btn-sm">Modificar</button>
+                <button id="botonEliminar" type="button" class="btn btn-primary btn-sm"
+                        data-toggle="modal" data-target="#confirmarEliminar">Eliminar</button>
+                <button id="botonSalir" type="button" class="btn btn-primary btn-sm">Salir</button>
+            </div>
+        </div>
+            <br>
+    <br>
+    <br>
+        </div>
+        <div id="mensajes" class="well well-sm centrado">Mensajes del Sistema.</div>
+        <div class="modal fade" id="confirmarEliminar" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header centrado">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="muModalLabel">Mensaje del Sistema</h4>
+                    </div><div class="modal-body">
+                        Está seguro de eliminar estos datos
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlert" type="button" class="btn btn-primary btn-sm">
+                            Eliminar
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="../../../js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../js/funciones.js" type="text/javascript"></script>
+        <script src="js/funciones.js" type="text/javascript"></script>
+        <script>
+                                       //verificarSesion(true);
+                                       $("#buscar").css("display", "none");
+                                       $("#id_timbrado").focus();
+                                       // siguienteCampo("#id_timbrado", "#numero_timbrado", false);
+                                       //siguientecampo("#numero_timbrado", "#botonBuscarTimbrado", false);
+                                       $("#botonAgregar").on('click', function () {
+                                           //if (validarFormulario()) {
+                                           agregarTimbrado();
+                                           // }
+                                       });
+                                       $("#id_timbrado").focusout(function (event) {
+                                           if ($("#id_timbrado").val === "") {
+                                               $("#id_timbrado").val("0");
+                                           }
+                                           buscarIdTimbrado();
+                                       });
+                                        $("#id_establecimiento").focusout(function (event) {
+                                           if ($("#id_establecimiento").val === "") {
+                                               $("#id_establecimiento").val("0");
+                                           }
+                                           buscarIdEstablecimiento();
+                                       });
+                                       $("#botonBuscarIdTimbrado").on('click', function () {
+                                           $("#buscar").load("buscar.html");
+                                           $("#buscar").fadeIn("slow");
+                                           $("#panelPrograma").fadeOut("slow");
+                                       });
+
+                                       $("#id_puesto").focusout(function (event) {
+                                           if ($("#id_puesto").val === "") {
+                                               $("#id_puesto").val("0");
+                                           }
+                                           buscarIdPuesto();
+                                       });
+                                       $("#botonBuscarIdPuesto").on('click', function () {
+                                           $("#buscar").load("buscarPuestos.html");
+                                           $("#buscar").fadeIn("slow");
+                                           $("#panelPrograma").fadeOut("slow");
+                                       });
+                                       $("#id_establecimiento").focusout(function (event) {
+                                           if ($("#id_establecimiento").val === "") {
+                                               $("#id_establecimiento").val("0");
+                                           }
+                                           buscarIdPuesto();
+                                       });
+                                       $("#botonBuscarIdEstablecimiento").on('click', function () {
+                                           $("#buscar").load("buscarEstablecimientos.html");
+                                           $("#buscar").fadeIn("slow");
+                                           $("#panelPrograma").fadeOut("slow");
+                                       });
+                                       $("#botonModificar").on('click', function () {
+                                           //if (validarFormulario()) {
+                                           modificarTimbrado();
+                                           //}
+                                       });
+                                       $("#botonEliminarAlert").on('click', function () {
+                                           eliminarTimbrado();
+                                           $("#confirmarEliminar").modal('hide');
+                                       });
+                                       $("#botonSalir").on('click', function () {
+                                           location.href = "../../../menu.html";
+                                       });
+        </script>
+    </body>
+</html>
+
+
+

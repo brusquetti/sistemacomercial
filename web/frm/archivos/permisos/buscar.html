@@ -1,0 +1,78 @@
+<div id="panelDiseño" class="panel panel-primary">
+    <div class="panel-heading centrado">Buscar Permisos</div>
+    <div class="panel-body">
+        <form id="formBuscar">
+            <input type="hidden" id="bpagina" name="bpagina" value="1"/>
+            <div class="row">
+                <div class="col-md-1">
+                    <span>Orden</span>
+                </div>
+                <div class="col-md-9">
+                    <input id="borden_permiso" name="borden_permiso" type="text"
+                           class="form-control input-sm" placeholder="Orden">
+                </div>
+                <div class="col-md-2">
+                    <button id="botonBuscar" type="button" class="btn btn-primary btn-sm">
+                        Buscar
+                    </button>
+                </div>
+            </div>
+        </form>
+        <br>
+        <div id="resultado">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Orden</th>
+                    </tr>
+                </thead>
+                <tbody id="contenidoBusqueda">
+                </tbody>
+            </table>
+            <nav>
+                <ul class="pager">
+                    <li id="anterior"><a href="#"><span aria-hidden="true">&larr;</span>
+                            Anterior</a></li>
+                    <li id="siguiente"><a href="#">Siguiente<span aria-hidden="true">&rarr;</span>
+                            </a></li>       
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="panel-footer centrado">
+        <button id="botonSalirBuscar" type="button" class="btn btn-primary btn-sm">Salir</button>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
+<script>
+    buscarOrdenpermiso();
+    $("#borden_permiso").focus();
+    siguienteCampo("#borden_permiso", "#botonBuscar", false);
+    $("#botonBuscar").on("click",function(){
+        $("#contenidoBusqueda").html("");
+        $("#bpagina").val("1");
+        buscarOrdenpermiso();
+        $("#borden_permiso").focus();
+    });
+    $("#anterior").on("click",function(){
+       $("#contenidoBusqueda").html("");
+       var pag=parseInt($("#bpagina").val());
+       if(pag>1){
+           $("#bpagina").val(pag-1);
+       }
+       buscarOrdenpermiso();
+    });
+    $("#siguiente").on("click", function(){
+         $("#contenidoBusqueda").html("");
+       var pag=parseInt($("#bpagina").val());
+           $("#bpagina").val(pag+1);
+       buscarOrdenpermiso();
+    }); 
+    $("#botonSalirBuscar").on('click',function(){
+       $("#buscar").fadeOut("slow");
+       $("#panelPrograma").fadeIn("slow");
+    });  
+</script>

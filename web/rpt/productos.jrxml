@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="productos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ece9b950-4397-42aa-9bf8-4f2935e992ee">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="133"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DESDE" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HASTA" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from productos p
+left join marcas a on p.id_marca = a.id_marca
+left join categorias c on p.id_categoria = c.id_categoria]]>
+	</queryString>
+	<field name="id_producto" class="java.lang.Integer"/>
+	<field name="nombre_producto" class="java.lang.String"/>
+	<field name="costo_venta" class="java.lang.Integer"/>
+	<field name="costo_compra" class="java.lang.Integer"/>
+	<field name="iva_producto" class="java.lang.Integer"/>
+	<field name="id_marca" class="java.lang.Integer"/>
+	<field name="id_categoria" class="java.lang.Integer"/>
+	<field name="nombre_marca" class="java.lang.String"/>
+	<field name="nombre_categoria" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="0" width="800" height="65" backcolor="#0F639B" uuid="563c1399-42e4-4bc4-9944-34d6937ad5e8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="271" y="12" width="282" height="36" uuid="f3bd9792-6854-453f-8b5c-f44bb6031d28"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTA DE PRODUCTOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="9" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<rectangle>
+				<reportElement x="2" y="2" width="800" height="25" backcolor="#8D8B8B" uuid="274c5caf-2679-4313-9602-93d5829c4954"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="702" y="2" width="100" height="20" uuid="a099c395-bbe3-400a-b7d7-cb17dc13d828"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="570" y="0" width="100" height="20" uuid="6e993fdb-dd50-4a71-9d63-faf874d76957"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CATEGORIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="2" width="100" height="20" uuid="2756f252-1d3f-4a49-8989-90da86d4a12d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="2" width="100" height="20" uuid="7c5cc445-30cd-4675-9ba2-7f971c2e9f97"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COSTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="2" width="100" height="20" uuid="649b99c8-e1c3-4116-8ff2-07584fe0e4df"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" uuid="9e257ddd-badc-4907-8bde-381dfdb6237e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="0" width="69" height="20" uuid="d87a8172-058e-4ff8-aab4-80f9c988fdc1"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="77" height="20" uuid="2a5033ac-cf5c-47e1-86eb-e09ca4f28dbf"/>
+				<textFieldExpression><![CDATA[$F{id_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="93f33e58-8420-41a1-b650-d26812742897"/>
+				<textFieldExpression><![CDATA[$F{nombre_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="219" y="3" width="100" height="20" uuid="671c4f7e-9ede-42cc-a46e-14483ef16fb5"/>
+				<textFieldExpression><![CDATA[$F{costo_venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="3" width="100" height="20" uuid="38c724a3-99f1-47f2-bbea-3adb6c5d3ef3"/>
+				<textFieldExpression><![CDATA[$F{costo_compra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="453" y="3" width="100" height="20" uuid="996abce0-d32b-4e58-a9c0-381ce4ac0076"/>
+				<textFieldExpression><![CDATA[$F{iva_producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="570" y="3" width="100" height="20" uuid="ad0fc88a-0bc0-41de-b4af-792e45a13d8f"/>
+				<textFieldExpression><![CDATA[$F{nombre_categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="3" width="100" height="20" uuid="b030ef2c-618f-43fd-829a-7d41cb2a0dc1"/>
+				<textFieldExpression><![CDATA[$F{nombre_marca}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="comprasporproveedor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2fac555f-3df6-41df-ae65-7293d803c80c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DESDE" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from  compras left join proveedores
+on compras.id_proveedor=proveedores.id_proveedor
+left join detallescompras
+ on  compras.id_compra=detallescompras.id_compra
+left join productos on
+productos.id_producto=detallescompras.id_producto
+where compras.id_proveedor=$P{DESDE}]]>
+	</queryString>
+	<field name="id_compra" class="java.lang.Integer"/>
+	<field name="numero_factura_compra" class="java.lang.String"/>
+	<field name="fecha_compra" class="java.sql.Date"/>
+	<field name="id_proveedor" class="java.lang.Integer"/>
+	<field name="estado_compra" class="java.lang.String"/>
+	<field name="fecha_emitida" class="java.sql.Date"/>
+	<field name="id_usuario" class="java.lang.Integer"/>
+	<field name="id_tipopago" class="java.lang.Integer"/>
+	<field name="ruc_proveedor" class="java.lang.String"/>
+	<field name="nombre_proveedor" class="java.lang.String"/>
+	<field name="correo_proveedor" class="java.lang.String"/>
+	<field name="direccion_proveedor" class="java.lang.String"/>
+	<field name="id_ciudad" class="java.lang.Integer"/>
+	<field name="telefono_proveedor" class="java.lang.String"/>
+	<field name="telefono2_proveedor" class="java.lang.String"/>
+	<field name="id_detallecompra" class="java.lang.Integer"/>
+	<field name="cantidad_productocompra" class="java.lang.Integer"/>
+	<field name="id_producto" class="java.lang.Integer"/>
+	<field name="total" class="java.lang.Integer"/>
+	<field name="nombre_producto" class="java.lang.String"/>
+	<field name="costo_venta" class="java.lang.Integer"/>
+	<field name="costo_compra" class="java.lang.Integer"/>
+	<field name="iva_producto" class="java.lang.Integer"/>
+	<field name="id_marca" class="java.lang.Integer"/>
+	<field name="id_categoria" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="79" backcolor="#003366" uuid="26e5c994-8f6d-49b3-bff2-b32c10798ba0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="57" y="17" width="441" height="43" uuid="7570c3af-be3b-46fd-b2f9-169c2c459ba5"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPRAS POR PROVEEDOR]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="120" height="20" uuid="cdd13a37-6db2-4858-a436-a767e9cda2c4"/>
+				<text><![CDATA[NUMERO DE FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="132" y="2" width="50" height="20" uuid="04247552-8b70-4ac0-ae3e-845de3864bd6"/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="2" width="100" height="20" uuid="07192110-f772-4f02-b876-76db85712580"/>
+				<text><![CDATA[PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="2" width="58" height="20" uuid="999d13bd-b940-4808-8183-e776942c277b"/>
+				<text><![CDATA[RUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="2" width="56" height="20" uuid="9896ebf1-4357-4d02-bd92-d34e52ebd183"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="2" width="100" height="20" uuid="7c58d6c7-931e-4792-86e1-507bcf3dbb0f"/>
+				<text><![CDATA[PRODUCTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="22d0df22-9e1f-4293-98da-9a9bc2b95ea4"/>
+				<textFieldExpression><![CDATA[$F{numero_factura_compra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="0" width="50" height="20" uuid="01a368df-b932-4db7-8ffc-f880c7246252"/>
+				<textFieldExpression><![CDATA[$F{fecha_emitida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="0" width="100" height="20" uuid="cda5f26e-157d-47a6-a878-b4918a44c6ac"/>
+				<textFieldExpression><![CDATA[$F{nombre_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="0" width="58" height="20" uuid="5df16c61-50be-4a5f-9cde-ff9a3541d1e4"/>
+				<textFieldExpression><![CDATA[$F{ruc_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="387" y="0" width="37" height="20" uuid="ad7fba83-7482-4781-986c-d144e2d335f2"/>
+				<textFieldExpression><![CDATA[$F{cantidad_productocompra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="866d5c9e-bb94-4a98-bf7d-e9886cde53ab"/>
+				<textFieldExpression><![CDATA[$F{nombre_producto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

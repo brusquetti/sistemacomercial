@@ -1,0 +1,83 @@
+<div id="panelDiseño" class="panel panel-primary"><!-- esto seria para el diseño-->
+    <div class="panel-heading centrado">Buscar Clientes</div>
+    <div id="panelBuscar">
+        <div class="panel-body">
+            <form id="formBuscar">
+                <input type="hidden" id="bpagina" name="bpagina" value="1"/>
+                <div class="row">
+                    <div class="col-md-1">
+                        <span>Nombre</span>
+                    </div>
+                    <div class="col-md-9">
+                        <input id="bnombre_cliente" name="bnombre_cliente" type="text"
+                               class="form-control input-sm" placeholder="Nombre">
+                    </div>
+                    <div class="col-md-2">
+                        <button id="botonBuscar" type="button" class="btn btn-primary btn-sm">Buscar</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <div id="resultado">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Ruc</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Cedula</th>
+                            <th>Nacimiento</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contenidoBusqueda">
+                    </tbody>
+                </table>
+                <nav>
+                    <ul class="pager">
+                        <li id="anterior"><a href="#"><span aria-hidden="true">&larr;</span>Anterior</a></li>
+                        <li id="siguiente"><a href="#">Siguiente <span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="panel-footer centrado">
+            <button id="botonSalirBuscar" type="button" class=" btn btn-primary btn-sm">Salir</button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
+<script>
+    buscarNombreCliente();
+    $("#bnombre_cliente").focus();
+    siguienteCampo("#bnombre_cliente", "#botonBuscar", false);
+    $("#botonBuscar").on("click", function () {
+        $("#contenidoBusqueda").html("");
+        $("#bpagina").val("1");
+        buscarNombreCliente();
+        $("#bnombre_cliente").focus();
+    });
+    $("#anterior").on("click", function () {
+        $("#contenidoBusqueda").html("");
+        var pag = parseInt($("#bpagina").val());
+        if (pag > 1) {
+            $("#bpagina").val(pag - 1);
+        }
+        buscarNombreCliente();
+    });
+    $("#siguiente").on("click", function () {
+        $("#contenidoBusqueda").html("");
+        var pag = parseInt($("#bpagina").val());
+        $("#bpagina").val(pag + 1);
+        buscarNombreCliente();
+    });
+    $("#botonSalirBuscar").on('click', function () {
+        $("#buscar").fadeOut("slow");
+        $("#panelPrograma").fadeIn("slow");
+    });
+</script>

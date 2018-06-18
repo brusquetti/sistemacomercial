@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pagosporfecha" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4a6e04ad-d8f6-4f8f-a12c-212edd968bcf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="133"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="DESDE" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="HASTA" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from  cuentas left join usuarios
+on cuentas.id_usuario=usuarios.id_usuario
+left join detallescuentas on cuentas.id_cuenta=detallescuentas.id_cuenta
+left join modospagos on modospagos.id_modopago=detallescuentas.id_modopago
+left join compras on compras.id_compra=detallescuentas.id_compra
+where cuentas.fecha_apertura between $P{DESDE} AND $P{HASTA}]]>
+	</queryString>
+	<field name="id_cuenta" class="java.lang.Integer"/>
+	<field name="fecha_apertura" class="java.sql.Date"/>
+	<field name="estado_cuenta" class="java.lang.String"/>
+	<field name="id_usuario" class="java.lang.Integer"/>
+	<field name="nombre_usuario" class="java.lang.String"/>
+	<field name="password_usuario" class="java.lang.String"/>
+	<field name="login_usuario" class="java.lang.String"/>
+	<field name="id_rol" class="java.lang.Integer"/>
+	<field name="id_detallecuenta" class="java.lang.Integer"/>
+	<field name="id_compra" class="java.lang.Integer"/>
+	<field name="id_modopago" class="java.lang.Integer"/>
+	<field name="importe" class="java.lang.Integer"/>
+	<field name="nombre_modopago" class="java.lang.String"/>
+	<field name="numero_factura_compra" class="java.lang.String"/>
+	<field name="fecha_compra" class="java.sql.Date"/>
+	<field name="id_proveedor" class="java.lang.Integer"/>
+	<field name="estado_compra" class="java.lang.String"/>
+	<field name="fecha_emitida" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="10" width="802" height="61" backcolor="#0F639B" uuid="164449d5-7763-40fb-8191-9a01aa2c139d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="10" width="802" height="54" uuid="375ee1d0-b75b-4eac-8685-eb30f32c02b1"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pagos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="14" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="65" height="20" uuid="0abb20ca-a506-4cb8-a7e9-1f66b289a29a"/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="2" width="77" height="20" uuid="6a91ddb2-a4ea-4de0-84d9-09344313cbeb"/>
+				<text><![CDATA[USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="2" width="115" height="20" uuid="f1ff3223-47fc-4056-a774-2927ea8de3d1"/>
+				<text><![CDATA[NUMERO DE FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="2" width="100" height="20" uuid="0a0dd29c-afcb-412c-a230-9bf98e174b84"/>
+				<text><![CDATA[FECHA PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="2" width="100" height="20" uuid="c06996e2-0fa0-4bde-82c1-d2f8b04cafca"/>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="640" y="2" width="100" height="20" uuid="517d1345-1878-4f92-847a-9e5d8d794726"/>
+				<text><![CDATA[MODO DE PAGO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="65" height="20" uuid="1307ddda-e41e-4917-938d-06468a3ac0f0"/>
+				<textFieldExpression><![CDATA[$F{id_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="86" y="0" width="77" height="20" uuid="af71f704-2fc4-4c91-af39-888ea890c2d2"/>
+				<textFieldExpression><![CDATA[$F{nombre_usuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="0" width="100" height="20" uuid="99e1be1b-47c0-496d-9dcc-f60f3e07bad8"/>
+				<textFieldExpression><![CDATA[$F{numero_factura_compra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="346" y="0" width="100" height="20" uuid="1c0c0f15-352c-4479-8808-db77b73a1fe2"/>
+				<textFieldExpression><![CDATA[$F{fecha_apertura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="0" width="100" height="20" uuid="41d7fc57-bb85-4e4c-baa5-94ea5cf4a902"/>
+				<textFieldExpression><![CDATA[$F{importe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="640" y="0" width="100" height="20" uuid="65755cf4-dade-447d-ad89-f685ff6c5d86"/>
+				<textFieldExpression><![CDATA[$F{nombre_modopago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

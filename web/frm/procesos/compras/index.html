@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sistema Comercial Union | Compras</title>
+        <link rel="icon" type="image/png" href="../../../img/favicon.ico"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../../../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/estilos.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body background="../../../img/sanicar_guaymy.jpg" style="width: 100%">
+        <div id="confirmar"></div>
+        <div id="buscar"></div>
+        <div id="panelLinea" class="panel panel-primary">
+            <div class="panel-heading centrado">Compras | Detalle</div>
+            <div class="panel-body">
+                <form id="formLinea">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Id Linea</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="id_detallecompra" name="id_detallecompra" type="text" class="form-control input-sm" placeholder="Id" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Productos</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="id_producto" name="id_producto" type="text" class="form-control input-sm" placeholder="Id" onKeyPress="return soloNumeros(event)">
+                        </div>
+                        <div class="col-md-1">
+                            <button id="botonBuscarIdProducto" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                        <div class="col-md-1">
+                            <span>Nombre Productos</span>
+                        </div>
+                        <div class="col-md-3">
+                            <input id="nombre_producto" name="nombre_producto" type="text" class="form-control input-sm" placeholder="Nombre Producto" readonly="readonly">
+                        </div>
+                        <div class="col-md-1">
+                            <span>Costo</span>
+                        </div>
+                        <div class="col-md-2">
+                            <input id="costo_compra" name="costo_compra" type="text" class="form-control input-sm" placeholder="Precio ">
+                        </div>
+                        <div class="col-md-1">
+                            <span>IVA</span>
+                        </div>                        
+                        <div class="col-md-1">
+                            <input id="iva_producto" name="iva_producto" type="text" class="form-control input-sm" placeholder="IVA" readonly="readonly" >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <span>Cantidad</span>
+                        </div>
+                        <div class="col-md-1">
+                            <input id="cantidad_productocompra" name="cantidad_productocompra" type="text" class="form-control input-sm derecha" placeholder="Cantidad" onKeyPress="return soloNumeros(event)">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer centrado">
+                <button id="botonAgregarLinea" type="button" class="btn btn-primary btn-sm">Agregar</button>
+                <!-- <button id="botonModificarLinea" type="button" class="btn btn-primary btn-sm">Modificar</button> -->
+                <button id="botonEliminarLinea" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmarEliminarLinea">Eliminar</button>
+                <button id="botonSalirLinea" type="button" class="btn btn-primary btn-sm">  Salir  </button>
+            </div>
+        </div>
+
+
+
+        <!--- PANELDISEÑO--->
+        <div id="panelPrograma"> 
+            <div id="panelDiseño" class="panel panel-primary">
+                <div class="panel-heading centrado" style="font-size: 15px">Compras | <span id="snombre_empresa"></span> | <span id="susuario_usuario"></span></div>
+                <div class="panel-body">
+                    <form id="formPrograma">
+                        <div style="text-align: center;font-size: 25px; "> <b>FACTURA</b> </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>COMPRA</span>
+                            </div>
+                            <div class="col-md-1">
+                                <input id="id_compra" name="id_compra" type="text" class="form-control input-sm " placeholder="Id" onKeyPress="return soloNumeros(event)">
+                            </div>
+                            <div class="col-md-1">
+                                <button id="botonBuscarIdCompra" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-1">
+                                <span>FECHA</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="fecha_compra" name="fecha_compra" type="date" class="form-control 
+                                       input-sm" readonly="readonly" >                         
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>CODIGO</span>
+                            </div>
+                            <div class="col-md-1">
+                                <input id="id_usuario" name="id_usuario" type="text" class="form-control input-sm " placeholder="Id Usuario" readonly="readonly" >
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-2">
+                                <span>COMPRADOR/A</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="nombre_usuario" name="nombre_usuario" type="text" class="form-control 
+                                       input-sm" readonly="readonly" >                         
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>N° FACTURA </span>
+                            </div>
+                            <div class="col-md-2">
+                                <input id="numero_factura_compra" name="numero_factura_compra" type="text" class="form-control 
+                                       input-sm" placeholder="N° Factura">                         
+                            </div>
+                            <div class="col-md-2">
+                                <span>FECHA EMITIDA</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="fecha_emitida" name="fecha_emitida" type="date" class="form-control 
+                                       input-sm">                         
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>PROVEEDOR</span>
+                            </div>
+                            <div class="col-md-1">
+                                <input id="id_proveedor" name="id_proveedor" type="text" class="form-control input-sm" placeholder="Id" readonly="readonly">
+                            </div>
+                            <div class="col-md-1">
+                                <button id="botonBuscarIdProveedor" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <div class="col-md-2">
+                                <span>NOMBRE</span>
+                            </div>
+                            <div class="col-md-3">
+                                <input id="nombre_proveedor" name="nombre_proveedor" type="text" class="form-control input-sm" placeholder="Nombre Proveedor" disabled="disabled">
+                            </div>
+                            <div class="col-md-1">
+                                <span>RUC</span>
+                            </div>
+                            <div class="col-md-2">
+                                <input id="ruc_proveedor" name="ruc_proveedor" type="text" class="form-control input-sm" placeholder="Ruc proveedor" disabled="disabled">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <span>CONDICION DE COMPRA</span>
+                            </div>
+                            <div class="col-md-3">
+                                <select name="id_modopago" id="id_modopago" class="form-control input-sm" >
+                                    <option selected value="0">Seleccionar</option>
+                                    <option value="1">CONTADO</option> 
+                                    <option value="2">CREDITO</option> 
+                                </select>
+                            </div> 
+                            <div class="col-md-2">
+                                <span>ESTADO</span>
+                            </div>
+                            <div class="col-md-2">
+                                <input id="estado_compra" name="estado_compra" type="text" class="form-control 
+                                       input-sm" readonly="readonly" >                         
+                            </div>
+                        </div> 
+
+                        <div style="text-align: center;font-size: 25px; "> <b>DETALLE FACTURA</b> </div>
+
+                    </form>
+                    <!--<center><h3>Compras Detalles</h3></center>-->
+                    <div id="detalle" hidden="">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Cantidad</th>
+                                    <th>Descripcion</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Exentas</th>
+                                    <th>Gravadas 5%</th>
+                                    <th>Gravadas 10%</th>
+                                    <th class="centrado"><button id="agregar" onclick="agregarLinea()" type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus"></span></button></th>
+                                </tr>
+                            </thead>
+                            <tbody id="contenidoDetalle">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-footer centrado">
+                    <button id="botonAgregar" type="button" class="btn btn-primary btn-sm">Agregar</button>
+                    <button id="botonEliminar" type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#confirmarEliminar">Anular</button>
+                    <button id="botonSalir" type="button" class="btn btn-primary btn-sm">  Salir  </button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div id="mensajes" class="well well-sm centrado">Mensajes del Sistema.</div>
+        <div class="modal fade" id="confirmarEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header  centrado">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Mensaje del Sistema</h4>
+                    </div>
+                    <div class="modal-body">
+                        Está seguro de anular esta factura?
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlert" type="button" class="btn btn-primary btn-sm">Confirmar</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="confirmarEliminarLinea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header  centrado">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabelLinea">Mensaje del Sistema</h4>
+                    </div>
+                    <div class="modal-body">
+                        Está seguro de eliminar esta linea?
+                    </div>
+                    <div class="modal-footer centrado">
+                        <button id="botonEliminarAlertLinea" type="button" class="btn btn-primary btn-sm">Eliminar</button>
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../../../js/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../js/funciones.js" type="text/javascript"></script>
+        <script src="js/funciones.js" type="text/javascript"></script>
+        <script>
+                                        verificarSesion(true);
+                                        $("#buscar").css("display", "none");
+                                        $("#panelLinea").css("display", "none");
+                                        $("#id_compra").focus();
+                                        buscarIdCompra();
+                                        //siguienteCampo("#id_compra", "#id_proveedor", false);
+
+                                        //siguienteCampo("#id_producto", "#cantidad_productocompra", false);
+
+                                        if ($("#id_compra").val() === "0") {
+                                            // siguienteCampo("#id_proveedor", "#botonAgregar", false);
+                                        } else {
+
+                                            // siguienteCampo("#id_proveedor", "#botonModificar", false);
+                                        }
+
+                                        $("#id_compra").focusout(function (event) {
+                                            if ($("#id_compra").val() === "") {
+                                                $("#id_compra").val("0");
+                                            }
+                                            buscarIdCompra();
+                                            var id = $("#id_compra").val();
+                                            $("#id_compra").val("0");
+                                            var img = "<img src='../../../img/pedidos/" + id + ".jpg' alt=''>";
+                                            $("#foto").html(img);
+
+                                        });
+                                        $("#id_proveedor").focusout(function (event) {
+                                            if ($("#id_proveedor").val() === "") {
+                                                $("#id_proveedor").val("0");
+                                            }
+                                            buscarIdProveedor();
+                                        });
+                                        $("#id_producto").focusout(function (event) {
+                                            if ($("#id_producto").val() === "") {
+                                                $("#id_producto").val("0");
+                                            }
+                                            buscarIdProducto();
+                                        });
+                                        $("#id_modopago").focusout(function (event) {
+                                            if ($("#id_modopago").val === "") {
+                                                $("#id_modopago").val("0");
+                                            }
+                                            buscarIdModoPago();
+                                        });
+                                        $("#botonBuscarIdModoPago").on('click', function () {
+                                            $("#buscar").load("buscarModos.html");
+                                            $("#buscar").fadeIn("slow");
+                                            $("#panelPrograma").fadeOut("slow");
+                                        });
+                                        $("#botonBuscarIdCompra").on('click', function () {
+                                            $("#buscar").load("buscar.html");
+                                            $("#buscar").fadeIn("slow");
+                                            $("#panelPrograma").fadeOut("slow");
+                                        });
+                                        $("#botonBuscarIdProveedor").on('click', function () {
+                                            $("#buscar").load("buscarProveedores.html");
+                                            $("#buscar").fadeIn("slow");
+                                            $("#panelPrograma").fadeOut("slow");
+                                        });
+                                        $("#botonBuscarIdProducto").on('click', function () {
+                                            $("#buscar").load("buscarProducto.html");
+                                            $("#buscar").fadeIn("slow");
+                                            $("#panelLinea").fadeOut("slow");
+                                        });
+
+
+                                        $("#botonAgregar").on('click', function () {
+                                            if (validarFormularioCompra()) {
+                                                agregarCompra();
+                                            }
+                                        });
+                                        $("#botonModificar").on('click', function () {
+
+                                            modificarCompra();
+
+                                        });
+                                        $("#botonEliminarAlert").on('click', function () {
+                                            eliminarCompra();
+                                            $('#confirmarEliminar').modal('hide');
+                                        });
+                                        $("#botonSalir").on('click', function () {
+                                            location.href = "../../../menu.html";
+                                        });
+
+                                        $("#botonAgregarLinea").on('click', function () {
+                                            if (validarFormularioCompra()) {
+                                                agregarCompraDetalle();
+                                            }
+                                        });
+                                        $("#botonModificarLinea").on('click', function () {
+
+                                            modificarCompraDetalle();
+                                        });
+                                        $("#botonEliminarAlertLinea").on('click', function () {
+                                            eliminarCompraDetalle();
+                                            $('#confirmarEliminarLinea').modal('hide');
+                                        });
+                                        $("#botonSalirLinea").on('click', function () {
+                                            $("#panelLinea").fadeOut("slow");
+                                            $("#panelPrograma").fadeIn("slow");
+                                        });
+
+        </script>
+    </body>
+</html>
